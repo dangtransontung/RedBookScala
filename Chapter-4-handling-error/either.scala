@@ -23,4 +23,14 @@ object Either {
   def sequence[E,A](as: List[Either[E, A]]): Either[E, List[AA]] = ???
 
   def traverse[E,A,B](as: List[A])(f: A => Either[E, B]): Either[E, List[B]] = ???
+
+  def map2Both[E, A, B, C](
+    a: Either[E, A],
+    b: Either[E, B],
+  )(f: (A, B) => C): Either[List[E], C] = 
+    (a, b) match
+      case (Right(aa), Right(bb)) => Right(f(aa, bb))
+      case (Left(e), Right(_)) => Left(List(e))
+      case (Right(_), Left(e)) => Left(List(e))
+      case (Left(e1), Left(e2)) => Left(List(e1, e2))
 }
