@@ -1,7 +1,7 @@
 name: Sync local main
 on:
   push:
-    branches: [main] # fires on merge-to-main (a squash/merge merge IS a push to main)
+    branches: [master] # fires on push to master
 
 jobs:
   pull:
