@@ -1,0 +1,14 @@
+name: Sync local main
+on:
+  push:
+    branches: [main] # fires on merge-to-main (a squash/merge merge IS a push to main)
+
+jobs:
+  pull:
+    runs-on: self-hosted
+    steps:
+      - name: Pull latest master
+        run: |
+          cd /Users/tungdangtran/Documents/RedBookScala/
+          git fetch origin master
+          git reset --hard origin/master
